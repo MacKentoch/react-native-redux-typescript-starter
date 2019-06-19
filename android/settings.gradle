@@ -1,0 +1,3 @@
+rootProject.name = 'reactNativeReduxTypescriptStarter'
+
+include ':app'
