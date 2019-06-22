@@ -20,7 +20,8 @@ const defaultHeaderStyle = {
     ios: {},
     android: {
       paddingTop: StatusBar.currentHeight,
-      height: StatusBar.currentHeight || 0 + 56,
+      // @ts-ignore
+      height: StatusBar.currentHeight + 56,
       elevation: 0,
     },
   }),
