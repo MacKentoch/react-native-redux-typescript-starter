@@ -30,9 +30,16 @@ const defaultHeaderStyle = {
 const routeConfigMap = {
   Info: {
     screen: Info,
-    navigationOptions: ({ navigation: { goBack } }: Props) => ({
-      headerTitle: <HeaderTitle title="Info" />,
-      headerLeft: <NavBackButton onPress={() => goBack('')} />,
+    navigationOptions: ({ navigation: { goBack, getParam } }: Props) => ({
+      headerTitle: (
+        <HeaderTitle title="Info" theme={getParam('theme', 'light')} />
+      ),
+      headerLeft: (
+        <NavBackButton
+          onPress={() => goBack('')}
+          theme={getParam('theme', 'light')}
+        />
+      ),
       headerRight: <View />,
       headerStyle: { ...defaultHeaderStyle },
       headerTintColor: colors.white,

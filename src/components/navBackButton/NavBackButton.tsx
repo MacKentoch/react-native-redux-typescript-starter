@@ -7,6 +7,7 @@ import { colors } from '../../config/colors';
 // #region types
 type Props = {
   onPress: (event: GestureResponderEvent) => any;
+  theme?: ThemeEnum;
 };
 // #endregion
 
@@ -14,7 +15,7 @@ type Props = {
 const DEFAUL_UNDERLAY_COLOR = colors.lightBlack;
 // #endregion
 
-function NavBackButton({ onPress }: Props) {
+function NavBackButton({ onPress, theme = 'light' }: Props) {
   return (
     <Touchable
       style={styles.button}

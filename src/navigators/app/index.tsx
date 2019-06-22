@@ -1,7 +1,7 @@
 // @ts-ignore
 import React from 'react';
 import { Platform, StatusBar } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, NavigationScreenProps } from 'react-navigation';
 import HeaderTitle from '../../components/headerTitle';
 import { colors } from '../../config/colors';
 import Home from '../../scenes/home';
@@ -24,8 +24,13 @@ const defaultHeaderStyle = {
 const routeConfigMap = {
   Home: {
     screen: Home,
-    navigationOptions: () => ({
-      headerTitle: <HeaderTitle title="Home" />,
+    navigationOptions: ({ navigation }: NavigationScreenProps) => ({
+      headerTitle: (
+        <HeaderTitle
+          title="Home"
+          theme={navigation.getParam('theme', 'light')}
+        />
+      ),
       headerLeft: null,
       headerStyle: { ...defaultHeaderStyle },
       headerTintColor: colors.white,
