@@ -7,7 +7,7 @@ import {
   TextStyle,
   FlexStyle,
 } from 'react-native';
-import { colors } from '../../config/colors';
+import { theme } from '../../config/theme';
 import { fonts } from '../../config/fonts';
 import { useTheme, UseThemeParams } from '../../hooks/useTheme';
 // #region types
@@ -15,14 +15,13 @@ type Props = { title?: string; theme?: ThemeEnum };
 // #endregion
 
 // #region constants
-const { white } = colors;
 const { family, size } = fonts;
 const defaultTitle = '';
 // #endregion
 
-function HeaderTitle({ title, theme = 'light' }: Props) {
+function HeaderTitle({ title, theme: currentTheme = 'light' }: Props) {
   const useThemeParams: UseThemeParams<Theme> = {
-    currentTheme: theme,
+    currentTheme,
     darkThemeStyles,
     lightThemeStyles,
   };
@@ -64,7 +63,7 @@ const darkThemeStyles = StyleSheet.create<Theme>({
   },
   titleText: {
     ...baseTitleTextStyles,
-    color: white,
+    color: theme.header.dark.buttonTextColor,
   },
 });
 const lightThemeStyles = StyleSheet.create<Theme>({
@@ -73,7 +72,7 @@ const lightThemeStyles = StyleSheet.create<Theme>({
   },
   titleText: {
     ...baseTitleTextStyles,
-    color: white,
+    color: theme.header.light.buttonTextColor,
   },
 });
 // #endregion

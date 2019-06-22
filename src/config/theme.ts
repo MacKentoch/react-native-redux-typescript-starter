@@ -4,11 +4,15 @@ export const theme = Object.freeze({
   header: {
     dark: {
       backgroundColor: colors.mediumBlack,
-      buttonColor: colors.white,
+      buttonTextColor: colors.white,
+      buttonUnderlayColor: colors.lightBlack,
+      buttonIconColor: colors.white,
     },
     light: {
       backgroundColor: colors.white,
-      buttonColor: colors.lightGrey,
+      buttonTextColor: colors.lightGrey,
+      buttonUnderlayColor: colors.lightBlack,
+      buttonIconColor: colors.white,
     },
   },
 

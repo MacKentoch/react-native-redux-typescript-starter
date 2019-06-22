@@ -1,28 +1,34 @@
 import React from 'react';
-import { StyleSheet, GestureResponderEvent } from 'react-native';
+import { StyleSheet, GestureResponderEvent, ViewStyle } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { colors } from '../../config/colors';
-
+import { useTheme, UseThemeParams } from '../../hooks/useTheme';
+import { theme } from '../../config/theme';
 // #region types
+
 type Props = {
   onPress: (event: GestureResponderEvent) => any;
   theme?: ThemeEnum;
 };
 // #endregion
 
-// #region constants
-const DEFAUL_UNDERLAY_COLOR = colors.lightBlack;
-// #endregion
+function NavBackButton({ onPress, theme: currentTheme = 'light' }: Props) {
+  const useThemeParams: UseThemeParams<Theme> = {
+    currentTheme,
+    darkThemeStyles,
+    lightThemeStyles,
+  };
+  const [themedStyles] = useTheme<Theme>(useThemeParams);
 
-function NavBackButton({ onPress, theme = 'light' }: Props) {
+  const DEFAUL_UNDERLAY_COLOR = theme.header[currentTheme].buttonUnderlayColor;
+  const ICON_COLOR = theme.header[currentTheme].buttonIconColor;
   return (
     <Touchable
-      style={styles.button}
+      style={themedStyles.button}
       underlayColor={DEFAUL_UNDERLAY_COLOR}
       onPress={onPress}
     >
-      <Icon name="ios-arrow-back" size={28} color={colors.white} />
+      <Icon name="ios-arrow-back" size={28} color={ICON_COLOR} />
     </Touchable>
   );
 }
@@ -30,13 +36,26 @@ function NavBackButton({ onPress, theme = 'light' }: Props) {
 NavBackButton.displayName = 'NavBackButton';
 
 // #region styles
-const styles = StyleSheet.create({
+const baseButtonStyles: ViewStyle = {
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: 'transparent',
+  paddingHorizontal: 15,
+  paddingVertical: 5,
+};
+type Theme = {
+  button: ViewStyle;
+};
+
+const darkThemeStyles = StyleSheet.create<Theme>({
   button: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-    paddingHorizontal: 15,
-    paddingVertical: 5,
+    ...baseButtonStyles,
+  },
+});
+
+const lightThemeStyles = StyleSheet.create<Theme>({
+  button: {
+    ...baseButtonStyles,
   },
 });
 // #endregion
