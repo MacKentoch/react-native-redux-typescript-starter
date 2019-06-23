@@ -28,9 +28,7 @@ const routeConfigMap = {
     navigationOptions: ({
       navigation: { getParam },
     }: NavigationScreenProps) => ({
-      headerTitle: (
-        <HeaderTitle title="Home" theme={getParam('theme', 'light')} />
-      ),
+      headerTitle: <HeaderTitle title="Home" />,
       headerLeft: null,
       headerStyle: {
         ...defaultHeaderStyle,

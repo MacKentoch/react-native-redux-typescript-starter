@@ -18,7 +18,7 @@ type Action = {
 
 // #region initial state
 const initialState: State = {
-  themeName: 'light',
+  themeName: 'dark',
 };
 // #endregion
 

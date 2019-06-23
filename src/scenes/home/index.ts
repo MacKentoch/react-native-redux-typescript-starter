@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch: Dispatch<FromReduxActions>) => {
 export type MappedDispatchToProps = FromReduxActions;
 // #endregion
 
-export default compose(
+export default compose<Home>(
   connect(
     mapStateToProps,
     mapDispatchToProps,

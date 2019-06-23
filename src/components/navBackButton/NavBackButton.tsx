@@ -4,15 +4,16 @@ import Touchable from 'react-native-platform-touchable';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useTheme, UseThemeParams } from '../../hooks/useTheme';
 import { theme } from '../../config/theme';
+import { MappedProps, MappedDispatchToProps } from './index';
 // #region types
 
 type Props = {
   onPress: (event: GestureResponderEvent) => any;
-  theme?: ThemeEnum;
-};
+} & MappedProps &
+  MappedDispatchToProps;
 // #endregion
 
-function NavBackButton({ onPress, theme: currentTheme = 'light' }: Props) {
+function NavBackButton({ onPress, themeName: currentTheme = 'dark' }: Props) {
   const useThemeParams: UseThemeParams<Theme> = {
     currentTheme,
     darkThemeStyles,
@@ -23,7 +24,6 @@ function NavBackButton({ onPress, theme: currentTheme = 'light' }: Props) {
   const DEFAULT_UNDERLAY_COLOR = theme.header[currentTheme].buttonUnderlayColor;
   const ICON_COLOR = theme.header[currentTheme].buttonIconColor;
 
-  console.log('current theme: ', currentTheme);
   return (
     <Touchable
       style={themedStyles.button}

@@ -14,7 +14,7 @@ export const theme = Object.freeze({
       backgroundColor: colors.white,
       buttonTextColor: colors.black,
       buttonUnderlayColor: colors.lightBlack,
-      buttonIconColor: colors.white,
+      buttonIconColor: colors.black,
       tintColor: colors.black,
       borderBottomWidth: 1,
     },

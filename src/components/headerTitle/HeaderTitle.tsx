@@ -10,8 +10,10 @@ import {
 import { theme } from '../../config/theme';
 import { fonts } from '../../config/fonts';
 import { useTheme, UseThemeParams } from '../../hooks/useTheme';
+import { MappedProps, MappedDispatchToProps } from './index';
 // #region types
-type Props = { title?: string; theme?: ThemeEnum };
+type Props = { title?: string | null | undefined } & MappedProps &
+  MappedDispatchToProps;
 // #endregion
 
 // #region constants
@@ -19,7 +21,7 @@ const { family, size } = fonts;
 const defaultTitle = '';
 // #endregion
 
-function HeaderTitle({ title, theme: currentTheme = 'light' }: Props) {
+function HeaderTitle({ title, themeName: currentTheme = 'light' }: Props) {
   const useThemeParams: UseThemeParams<Theme> = {
     currentTheme,
     darkThemeStyles,
