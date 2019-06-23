@@ -31,33 +31,28 @@ const defaultHeaderStyle = {
 const routeConfigMap = {
   Info: {
     screen: Info,
-    navigationOptions: ({ navigation: { goBack, getParam } }: Props) => ({
-      headerTitle: (
-        <HeaderTitle title="Info" theme={getParam('theme', 'light')} />
-      ),
-      headerLeft: (
-        <NavBackButton
-          onPress={() => goBack('')}
-          theme={getParam('theme', 'light')}
-        />
-      ),
-      headerRight: <View />,
-      headerStyle: {
-        ...defaultHeaderStyle,
-        backgroundColor:
-          getParam('theme', 'light') === 'light'
-            ? theme.header.light.backgroundColor
-            : theme.header.dark.backgroundColor,
-        borderBottomWidth:
-          getParam('theme', 'light') === 'light'
-            ? theme.header.light.borderBottomWidth
-            : theme.header.dark.borderBottomWidth,
-      },
-      headerTintColor:
-        getParam('theme', 'light') === 'light'
-          ? theme.header.light.tintColor
-          : theme.header.dark.tintColor,
-    }),
+    navigationOptions: ({
+      navigation: { goBack, getParam },
+      // @ts-ignore
+      screenProps: { currentTheme = 'light' },
+    }: Props) => {
+      // @ts-ignore
+      const headerTheme = theme.header[currentTheme] || theme.header;
+
+      return {
+        headerTitle: <HeaderTitle title="Info" theme={currentTheme} />,
+        headerLeft: (
+          <NavBackButton onPress={() => goBack('')} theme={currentTheme} />
+        ),
+        headerRight: <View />,
+        headerStyle: {
+          ...defaultHeaderStyle,
+          backgroundColor: headerTheme.backgroundColor,
+          borderBottomWidth: headerTheme.borderBottomWidth,
+        },
+        headerTintColor: headerTheme.tintColor,
+      };
+    },
   },
 };
 

@@ -19,11 +19,14 @@ import { useTheme, UseThemeParams } from '../../hooks/useTheme';
 type Props = {} & MappedProps & MappedDispatchToProps & NavigationScreenProps;
 // #endregion
 
-function Home({ navigation: { navigate }, themeName }: Props) {
+function Home({ navigation, themeName }: Props) {
+  const { navigate } = navigation;
+
   const useThemeParams: UseThemeParams<Theme> = {
     currentTheme: themeName,
     darkThemeStyles,
     lightThemeStyles,
+    navigation,
   };
   const [themedStyles] = useTheme<Theme>(useThemeParams);
 

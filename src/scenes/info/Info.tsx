@@ -18,11 +18,12 @@ import { theme } from '../../config/theme';
 type Props = {} & MappedProps & MappedDispatchToProps & NavigationScreenProps;
 // #endregion
 
-function Info({ themeName }: Props) {
+function Info({ navigation, themeName }: Props) {
   const useThemeParams: UseThemeParams<Theme> = {
     currentTheme: themeName,
     darkThemeStyles,
     lightThemeStyles,
+    navigation,
   };
   const [themedStyles] = useTheme<Theme>(useThemeParams);
 

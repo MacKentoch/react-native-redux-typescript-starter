@@ -26,26 +26,23 @@ const routeConfigMap = {
   Home: {
     screen: Home,
     navigationOptions: ({
-      navigation: { getParam },
-    }: NavigationScreenProps) => ({
-      headerTitle: <HeaderTitle title="Home" />,
-      headerLeft: null,
-      headerStyle: {
-        ...defaultHeaderStyle,
-        backgroundColor:
-          getParam('theme', 'light') === 'light'
-            ? theme.header.light.backgroundColor
-            : theme.header.dark.backgroundColor,
-        borderBottomWidth:
-          getParam('theme', 'light') === 'light'
-            ? theme.header.light.borderBottomWidth
-            : theme.header.dark.borderBottomWidth,
-      },
-      headerTintColor:
-        getParam('theme', 'light') === 'light'
-          ? theme.header.light.tintColor
-          : theme.header.dark.tintColor,
-    }),
+      // @ts-ignore
+      screenProps: { currentTheme = 'light' },
+    }: NavigationScreenProps) => {
+      // @ts-ignore
+      const headerTheme = theme.header[currentTheme] || theme.header;
+
+      return {
+        headerTitle: <HeaderTitle title="Home" />,
+        headerLeft: null,
+        headerStyle: {
+          ...defaultHeaderStyle,
+          backgroundColor: headerTheme.backgroundColor,
+          borderBottomWidth: headerTheme.borderBottomWidth,
+        },
+        headerTintColor: headerTheme.tintColor,
+      };
+    },
   },
 };
 

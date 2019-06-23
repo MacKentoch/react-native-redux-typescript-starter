@@ -25,11 +25,11 @@ const StatusBarProps = Platform.select({
 const AppContainer = createAppContainer(RootNavigator);
 // #endregion
 
-function App({  }: Props) {
+function App({ themeName: currentTheme }: Props) {
   return (
     <View style={styles.container}>
       <StatusBar {...StatusBarProps} />
-      <AppContainer />
+      <AppContainer screenProps={{ currentTheme }} />
     </View>
   );
 }

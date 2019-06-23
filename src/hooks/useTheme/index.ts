@@ -27,7 +27,9 @@ export function useTheme<T>({
     currentTheme === 'light' ? lightThemeStyles : darkThemeStyles,
   );
 
-  navigation && navigation.setParams({ theme: currentTheme });
+  // useEffect(() => {
+  //   navigation && navigation.setParams({ theme: currentTheme });
+  // }, []);
 
   useEffect(() => {
     navigation && navigation.setParams({ theme: currentTheme });
