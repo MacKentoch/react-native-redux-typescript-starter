@@ -1,14 +1,35 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-// import { NavigationScreenProps } from 'react-navigation';
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlexStyle,
+  ViewStyle,
+  TextStyle,
+} from 'react-native';
+import { NavigationScreenProps } from 'react-navigation';
 import { colors } from '../../config/colors';
 import { fonts } from '../../config/fonts';
+import { MappedProps, MappedDispatchToProps } from './index';
+import { useTheme, UseThemeParams } from '../../hooks/useTheme';
+import { theme } from '../../config/theme';
 
-function Info() {
+// #region types
+type Props = {} & MappedProps & MappedDispatchToProps & NavigationScreenProps;
+// #endregion
+
+function Info({ themeName }: Props) {
+  const useThemeParams: UseThemeParams<Theme> = {
+    currentTheme: themeName,
+    darkThemeStyles,
+    lightThemeStyles,
+  };
+  const [themedStyles] = useTheme<Theme>(useThemeParams);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Info scene here</Text>
-      <View style={styles.flexible} />
+    <View style={themedStyles.container}>
+      <Text style={themedStyles.title}>Info scene here</Text>
+      <View style={themedStyles.flexible} />
     </View>
   );
 }
@@ -16,23 +37,56 @@ function Info() {
 Info.displayName = 'Info';
 
 // #region styles
-const styles = StyleSheet.create({
+const baseContainerStyles: ViewStyle | FlexStyle = {
+  flex: 1,
+  alignItems: 'center',
+  backgroundColor: colors.black,
+  paddingTop: 80,
+};
+
+const baseFlexibleStyles: FlexStyle = {
+  flex: 1,
+};
+
+const baseTitleStyles: TextStyle = {
+  marginTop: 30,
+  paddingHorizontal: 10,
+  fontFamily: fonts.family.openSansSemiBold,
+  fontSize: fonts.size.XXXL,
+  textAlign: 'center',
+};
+
+type Theme = {
+  container: ViewStyle & FlexStyle;
+  flexible: FlexStyle;
+  title: TextStyle;
+};
+
+const darkThemeStyles = StyleSheet.create<Theme>({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: colors.black,
-    paddingTop: 80,
+    ...baseContainerStyles,
+    backgroundColor: theme.scene.dark.backgroundColor,
   },
   flexible: {
-    flex: 1,
+    ...baseFlexibleStyles,
   },
   title: {
-    marginTop: 30,
-    paddingHorizontal: 10,
-    color: colors.white,
-    fontFamily: fonts.family.openSansSemiBold,
-    fontSize: fonts.size.XXXL,
-    textAlign: 'center',
+    ...baseTitleStyles,
+    color: theme.scene.dark.titleColor,
+  },
+});
+
+const lightThemeStyles = StyleSheet.create<Theme>({
+  container: {
+    ...baseContainerStyles,
+    backgroundColor: theme.scene.light.backgroundColor,
+  },
+  flexible: {
+    ...baseFlexibleStyles,
+  },
+  title: {
+    ...baseTitleStyles,
+    color: theme.scene.light.titleColor,
   },
 });
 // #endregion

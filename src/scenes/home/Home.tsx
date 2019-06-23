@@ -14,8 +14,8 @@ import { fonts } from '../../config/fonts';
 import Footer from './footer';
 import { MappedProps, MappedDispatchToProps } from './index';
 import { useTheme, UseThemeParams } from '../../hooks/useTheme';
-// #region types
 
+// #region types
 type Props = {} & MappedProps & MappedDispatchToProps & NavigationScreenProps;
 // #endregion
 
@@ -111,6 +111,7 @@ const darkThemeStyles = StyleSheet.create<Theme>({
   moreInfoButtonText: {
     fontFamily: fonts.family.openSansSemiBoldItalic,
     fontSize: fonts.size.L,
+    color: theme.button.light.textColor,
   },
 });
 
@@ -139,6 +140,7 @@ const lightThemeStyles = StyleSheet.create({
   moreInfoButtonText: {
     fontFamily: fonts.family.openSansSemiBoldItalic,
     fontSize: fonts.size.L,
+    color: theme.button.light.textColor,
   },
 });
 // #endregion

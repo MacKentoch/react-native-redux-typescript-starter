@@ -9,6 +9,7 @@ import HeaderTitle from '../../components/headerTitle';
 import NavBackButton from '../../components/navBackButton';
 import { colors } from '../../config/colors';
 import Info from '../../scenes/info';
+import { theme } from '../../config/theme';
 
 type Props = {} & NavigationScreenProps<any>;
 
@@ -41,8 +42,21 @@ const routeConfigMap = {
         />
       ),
       headerRight: <View />,
-      headerStyle: { ...defaultHeaderStyle },
-      headerTintColor: colors.white,
+      headerStyle: {
+        ...defaultHeaderStyle,
+        backgroundColor:
+          getParam('theme', 'light') === 'light'
+            ? theme.header.light.backgroundColor
+            : theme.header.dark.backgroundColor,
+        borderBottomWidth:
+          getParam('theme', 'light') === 'light'
+            ? theme.header.light.borderBottomWidth
+            : theme.header.dark.borderBottomWidth,
+      },
+      headerTintColor:
+        getParam('theme', 'light') === 'light'
+          ? theme.header.light.tintColor
+          : theme.header.dark.tintColor,
     }),
   },
 };

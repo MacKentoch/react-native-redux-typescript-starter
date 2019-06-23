@@ -20,12 +20,14 @@ function NavBackButton({ onPress, theme: currentTheme = 'light' }: Props) {
   };
   const [themedStyles] = useTheme<Theme>(useThemeParams);
 
-  const DEFAUL_UNDERLAY_COLOR = theme.header[currentTheme].buttonUnderlayColor;
+  const DEFAULT_UNDERLAY_COLOR = theme.header[currentTheme].buttonUnderlayColor;
   const ICON_COLOR = theme.header[currentTheme].buttonIconColor;
+
+  console.log('current theme: ', currentTheme);
   return (
     <Touchable
       style={themedStyles.button}
-      underlayColor={DEFAUL_UNDERLAY_COLOR}
+      underlayColor={DEFAULT_UNDERLAY_COLOR}
       onPress={onPress}
     >
       <Icon name="ios-arrow-back" size={28} color={ICON_COLOR} />

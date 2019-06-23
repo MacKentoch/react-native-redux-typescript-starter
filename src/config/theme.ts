@@ -7,12 +7,16 @@ export const theme = Object.freeze({
       buttonTextColor: colors.white,
       buttonUnderlayColor: colors.lightBlack,
       buttonIconColor: colors.white,
+      tintColor: colors.white,
+      borderBottomWidth: 0,
     },
     light: {
       backgroundColor: colors.white,
-      buttonTextColor: colors.lightGrey,
+      buttonTextColor: colors.black,
       buttonUnderlayColor: colors.lightBlack,
       buttonIconColor: colors.white,
+      tintColor: colors.black,
+      borderBottomWidth: 1,
     },
   },
 
