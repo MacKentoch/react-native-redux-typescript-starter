@@ -26,7 +26,6 @@ function Home({ navigation, themeName }: Props) {
     currentTheme: themeName,
     darkThemeStyles,
     lightThemeStyles,
-    navigation,
   };
   const [themedStyles] = useTheme<Theme>(useThemeParams);
 

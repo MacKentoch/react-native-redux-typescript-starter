@@ -1,5 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, StatusBar, Platform } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  StatusBar,
+  Platform,
+  StatusBarPropsAndroid,
+  StatusBarPropsIOS,
+} from 'react-native';
 import { NavigationScreenProps, createAppContainer } from 'react-navigation';
 import RootNavigator from './navigators/root';
 import { MappedDispatchToProps, MappedProps } from './index';
@@ -10,7 +17,8 @@ type Props = {} & NavigationScreenProps & MappedProps & MappedDispatchToProps;
 // #endregion
 
 // #region constants
-const StatusBarProps = Platform.select({
+const StatusBarProps: StatusBarPropsIOS &
+  StatusBarPropsAndroid = Platform.select({
   ios: {
     barStyle: 'light-content',
   },
@@ -28,6 +36,7 @@ const AppContainer = createAppContainer(RootNavigator);
 function App({ themeName: currentTheme }: Props) {
   return (
     <View style={styles.container}>
+      {/* // @ts-ignore */}
       <StatusBar {...StatusBarProps} />
       <AppContainer screenProps={{ currentTheme }} />
     </View>

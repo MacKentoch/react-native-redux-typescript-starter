@@ -21,19 +21,12 @@ export function useTheme<T>({
   currentTheme = 'light',
   darkThemeStyles,
   lightThemeStyles,
-  navigation,
 }: UseThemeParams<T>): [StyleSheet.NamedStyles<T>] {
   const [themedStyles, setThemedStyles] = useState<StyleSheet.NamedStyles<T>>(
     currentTheme === 'light' ? lightThemeStyles : darkThemeStyles,
   );
 
-  // useEffect(() => {
-  //   navigation && navigation.setParams({ theme: currentTheme });
-  // }, []);
-
   useEffect(() => {
-    navigation && navigation.setParams({ theme: currentTheme });
-
     if (currentTheme === 'light') {
       setThemedStyles(lightThemeStyles);
     }

@@ -32,7 +32,7 @@ const routeConfigMap = {
   Info: {
     screen: Info,
     navigationOptions: ({
-      navigation: { goBack, getParam },
+      navigation: { goBack },
       // @ts-ignore
       screenProps: { currentTheme = 'light' },
     }: Props) => {
