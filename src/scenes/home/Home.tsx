@@ -22,7 +22,7 @@ import { useTheme, UseThemeParams } from '../../hooks/useTheme';
 type Props = {} & MappedProps & MappedDispatchToProps & NavigationScreenProps;
 // #endregion
 
-function Home({ navigation: { navigate }, themeName, initTheme }: Props) {
+function Home({ navigation: { navigate }, themeName, changeTheme }: Props) {
   const useThemeParams: UseThemeParams<Theme> = {
     currentTheme: themeName,
     darkThemeStyles,
@@ -41,7 +41,7 @@ function Home({ navigation: { navigate }, themeName, initTheme }: Props) {
   // @ts-ignore
   const switchIosBackColor = theme.switch[themeName].ios_backgroundColor;
   const handlesOnThemeChange = useCallback((isDarkTheme: boolean) => {
-    initTheme(isDarkTheme ? 'dark' : 'light');
+    changeTheme(isDarkTheme ? 'dark' : 'light');
   }, []);
   // #endregions
   return (

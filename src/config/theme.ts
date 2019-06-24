@@ -57,7 +57,7 @@ export const theme = Object.freeze({
       infoTextColor: colors.white,
     },
     light: {
-      cardBackgroundColor: colors.lightGrey,
+      cardBackgroundColor: colors.white,
       infoTextColor: colors.mediumBlack,
     },
   },

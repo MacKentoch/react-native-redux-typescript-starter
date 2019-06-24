@@ -4,4 +4,5 @@ export type State = {
 
 export type ThemeActions = {
   initTheme: (themeName: ThemeEnum) => any;
+  changeTheme: (themeName: ThemeEnum) => any;
 };

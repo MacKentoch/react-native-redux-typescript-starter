@@ -52,4 +52,7 @@ export function initTheme(themeName: ThemeEnum): Action {
   return { type: THEME_INIT, themeName };
 }
 
+export function changeTheme(themeName: ThemeEnum): Action {
+  return { type: THEME_CHANGE, themeName };
+}
 // #endregion
