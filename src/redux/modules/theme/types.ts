@@ -3,5 +3,5 @@ export type State = {
 };
 
 export type ThemeActions = {
-  initTheme: () => any;
+  initTheme: (themeName: ThemeEnum) => any;
 };

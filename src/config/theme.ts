@@ -41,4 +41,24 @@ export const theme = Object.freeze({
       textColor: colors.white,
     },
   },
+
+  switch: {
+    dark: {
+      ios_backgroundColor: colors.blue,
+    },
+    light: {
+      ios_backgroundColor: colors.blue,
+    },
+  },
+
+  home: {
+    dark: {
+      cardBackgroundColor: colors.mediumBlack,
+      infoTextColor: colors.white,
+    },
+    light: {
+      cardBackgroundColor: colors.lightGrey,
+      infoTextColor: colors.mediumBlack,
+    },
+  },
 });

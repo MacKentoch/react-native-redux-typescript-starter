@@ -15,3 +15,7 @@ It follows [React redux Typescript style guide](https://github.com/piotrwitek/re
 - [ ] upgrade [react-native-cli 2.x](https://github.com/react-native-community/cli) (_=> react-native 0.60+_)
 - [ ] ensure auto linking (RN 0.60?) does link fonts assets as previous `react-native link` did before
 - [ ] add eslint (_TSlint deprecation_)
+
+### Theming with react-navigation
+
+You must use screenProps (params won't work as well as screenProps), see [link](https://reactnavigation.org/docs/en/themes.html#themes-inside-navigationoptions)

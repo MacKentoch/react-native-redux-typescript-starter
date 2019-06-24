@@ -1,14 +1,17 @@
 import React, { useCallback } from 'react';
 import {
   StyleSheet,
+  ScrollView,
   View,
   Text,
   ViewStyle,
   TextStyle,
   FlexStyle,
+  Switch,
 } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
 import { NavigationScreenProps } from 'react-navigation';
+import CardView from 'react-native-cardview';
 import { theme } from '../../config/theme';
 import { fonts } from '../../config/fonts';
 import Footer from './footer';
@@ -19,9 +22,7 @@ import { useTheme, UseThemeParams } from '../../hooks/useTheme';
 type Props = {} & MappedProps & MappedDispatchToProps & NavigationScreenProps;
 // #endregion
 
-function Home({ navigation, themeName }: Props) {
-  const { navigate } = navigation;
-
+function Home({ navigation: { navigate }, themeName, initTheme }: Props) {
   const useThemeParams: UseThemeParams<Theme> = {
     currentTheme: themeName,
     darkThemeStyles,
@@ -35,10 +36,39 @@ function Home({ navigation, themeName }: Props) {
     },
     [],
   );
+
+  // #region switch related
+  // @ts-ignore
+  const switchIosBackColor = theme.switch[themeName].ios_backgroundColor;
+  const handlesOnThemeChange = useCallback((isDarkTheme: boolean) => {
+    initTheme(isDarkTheme ? 'dark' : 'light');
+  }, []);
+  // #endregions
   return (
-    <View style={themedStyles.container}>
+    <ScrollView
+      style={themedStyles.container}
+      contentContainerStyle={themedStyles.flexible}
+    >
       <View style={themedStyles.contentContainer}>
         <Text style={themedStyles.title}>Home scene</Text>
+
+        <View style={themedStyles.flexible} />
+
+        <CardView
+          style={themedStyles.card}
+          cornerRadius={8}
+          cardElevation={2}
+          cardMaxElevation={2}
+        >
+          <View style={themedStyles.cardContent}>
+            <Text style={themedStyles.infoText}>Dark theme:</Text>
+            <Switch
+              value={themeName === 'dark'}
+              // ios_backgroundColor={switchIosBackColor}
+              onValueChange={handlesOnThemeChange}
+            />
+          </View>
+        </CardView>
 
         <View style={themedStyles.flexible} />
 
@@ -51,7 +81,7 @@ function Home({ navigation, themeName }: Props) {
 
         <Footer />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -79,6 +109,19 @@ const baseMoreInfoButton: ViewStyle & FlexStyle = {
   alignItems: 'center',
   justifyContent: 'center',
 };
+const baseCardContent: ViewStyle & FlexStyle = {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  paddingHorizontal: 10,
+};
+const baseCard: ViewStyle & FlexStyle = {
+  paddingVertical: 15,
+  paddingHorizontal: 10,
+};
+const baseInfoText: TextStyle = {
+  marginRight: 5,
+};
 // #endregion
 
 type Theme = {
@@ -88,6 +131,9 @@ type Theme = {
   title: TextStyle;
   moreInfoButton: ViewStyle;
   moreInfoButtonText: TextStyle;
+  card: ViewStyle & FlexStyle;
+  cardContent: ViewStyle & FlexStyle;
+  infoText: TextStyle;
 };
 
 const darkThemeStyles = StyleSheet.create<Theme>({
@@ -115,6 +161,9 @@ const darkThemeStyles = StyleSheet.create<Theme>({
     fontSize: fonts.size.L,
     color: theme.button.light.textColor,
   },
+  card: { ...baseCard, backgroundColor: theme.home.dark.cardBackgroundColor },
+  cardContent: { ...baseCardContent },
+  infoText: { ...baseInfoText, color: theme.home.dark.infoTextColor },
 });
 
 const lightThemeStyles = StyleSheet.create({
@@ -144,6 +193,9 @@ const lightThemeStyles = StyleSheet.create({
     fontSize: fonts.size.L,
     color: theme.button.light.textColor,
   },
+  card: { ...baseCard, backgroundColor: theme.home.light.cardBackgroundColor },
+  cardContent: { ...baseCardContent },
+  infoText: { ...baseInfoText, color: theme.home.light.infoTextColor },
 });
 // #endregion
 

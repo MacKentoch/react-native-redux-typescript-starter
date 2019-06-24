@@ -48,8 +48,8 @@ export default function(state: State = initialState, action: Action): State {
 // #endregion
 
 // #region action creators
-export function initTheme(): Action {
-  return { type: THEME_INIT };
+export function initTheme(themeName: ThemeEnum): Action {
+  return { type: THEME_INIT, themeName };
 }
 
 // #endregion
