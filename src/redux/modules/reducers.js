@@ -14,7 +14,7 @@ const config = {
   timeout: 10000, // prevent rehydrate called after timeout when debugging with devTools
   key: appConfig.persistStoreKey,
   storage,
-  whitelist: [],
+  whitelist: ['theme'],
 };
 // #endregion
 

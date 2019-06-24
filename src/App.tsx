@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -10,7 +10,6 @@ import {
 import { NavigationScreenProps, createAppContainer } from 'react-navigation';
 import RootNavigator from './navigators/root';
 import { MappedDispatchToProps, MappedProps } from './index';
-// import { theme } from './theme';
 
 // #region types
 type Props = {} & NavigationScreenProps & MappedProps & MappedDispatchToProps;
@@ -34,6 +33,16 @@ const AppContainer = createAppContainer(RootNavigator);
 // #endregion
 
 function App({ themeName: currentTheme }: Props) {
+  useEffect(() => {
+    if (currentTheme === 'light') {
+      StatusBar.setBarStyle('dark-content');
+    }
+
+    if (currentTheme === 'dark') {
+      StatusBar.setBarStyle('light-content');
+    }
+  }, [currentTheme]);
+
   return (
     <View style={styles.container}>
       {/* // @ts-ignore */}
